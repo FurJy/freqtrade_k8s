@@ -3,10 +3,10 @@ TESTED ON UBUNTU 22.04.2 LTS
 
 ---SETUP---
 1) Install k8s
-sudo snap install microk8s --classic
-sudo usermod -a -G microk8s $USER
-sudo chown -f -R $USER ~/.kube
-su - $USER
+  sudo snap install microk8s --classic
+  sudo usermod -a -G microk8s $USER
+  sudo chown -f -R $USER ~/.kube
+  su - $USER
 
 2) Install docker
   apt update
@@ -31,5 +31,9 @@ sudo microk8s kubectl apply -f freqtrade-service.yaml,freqtrade-deployment.yaml
 2) we copy user_data folder and select it in freqtrade-deployment.yaml as a volume (hostPath)
 SELECTING ONLY CONFIG.JSON DOESN'T WORK, FREQTRADE REQUIRES SOME MORE FILES; SO WE COPY A FOLDER
 3) kubernetes uses a NodePort to expose an application port. NodePort ports pool starts from 30000.
+But you need to create new SERVICE AND DEPLOYMENT so that every pod will have it's own service, and every service will have it's own NodePort.
+
+---DON'T FORGET---
+change &serviceName and &containerName variables in yaml files for every new service + pod. ofc &serviceName in freqtrade-deployment and freqtrade-service should be the same for one bot.
 
 
