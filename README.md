@@ -34,6 +34,7 @@ SELECTING ONLY CONFIG.JSON DOESN'T WORK, FREQTRADE REQUIRES SOME MORE FILES; SO 
 But you need to create new SERVICE AND DEPLOYMENT so that every pod will have it's own service, and every service will have it's own NodePort.
 
 ---DON'T FORGET---
-change &serviceName and &containerName variables in yaml files for every new service + pod. ofc &serviceName in freqtrade-deployment and freqtrade-service should be the same for one bot.
-
-
+1) change &serviceName and &containerName variables in yaml files for every new service + pod. ofc &serviceName in freqtrade-deployment and freqtrade-service should be the same for one bot.
+2) if you want to check port for your bots => sudo microk8s kubectl get service
+ ![Screenshot 2023-04-23 172237](https://user-images.githubusercontent.com/93829120/233831267-b1cb041d-2888-4c49-bbf5-9a6ead844f75.png)
+3) if you want your kubernetes to have dashboard => sudo microk8s enable dashboard
