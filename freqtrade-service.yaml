@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    freqapp: &serviceName freqtrade1
+  name: *serviceName
+spec:
+  ports:
+    - name: "8080"
+      port: 8080
+      targetPort: 8080
+  selector:
+    freqapp: *serviceName
+  type: NodePort
+#status:
+#  loadBalancer: {}

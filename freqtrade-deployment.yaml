@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    freqapp: &serviceName freqtrade1
+  name: &containerName freqtrade1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      freqapp: *serviceName
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        freqapp: *serviceName
+    spec:
+      containers:
+        - args:
+            - trade
+            - --logfile
+            - /freqtrade/user_data/logs/freqtrade.log
+            - --db-url
+            - sqlite:////freqtrade/user_data/tradesv3.sqlite
+            - --config
+            - /freqtrade/user_data/config.json
+            - --strategy
+            - SampleStrategy
+          image: freqtradeorg/freqtrade:stable
+          name: *containerName
+          ports:
+            - containerPort: 8080
+          resources: {}
+          volumeMounts:
+            - mountPath: /freqtrade/user_data
+              name: config
+      restartPolicy: Always
+      volumes:
+        - name: config
+          hostPath:
+            path: /etc/freqtrade/user_data
+            type: DirectoryOrCreate
+status: {}
