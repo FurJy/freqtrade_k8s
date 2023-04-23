@@ -29,8 +29,8 @@ Copy freqtrade-deployment.yaml and freqtrade-service.yaml into /etc/freqtrade\
 
 ---HOW IT WORKS---
 1) k8s yaml files are based on default freqtrade docker-compose.yaml file; so it works almost the same way
-2) we copy user_data folder (new user_data for every bot) and select it in freqtrade-deployment.yaml as a volume (hostPath)
-SELECTING ONLY CONFIG.JSON DOESN'T WORK, FREQTRADE REQUIRES SOME MORE FILES; SO WE COPY A FOLDER
+2) we copy user_data folder (new user_data for every bot) and select it in freqtrade-deployment.yaml as a volume (hostPath)\
+SELECTING ONLY CONFIG.JSON DOESN'T WORK, FREQTRADE REQUIRES MORE FILES; SO WE COPY A FOLDER
 3) kubernetes uses a NodePort to expose an application port. NodePort ports pool starts from 30000.
 But you need to create new SERVICE AND DEPLOYMENT so that every pod will have it's own service, and every service will have it's own NodePort.
 
