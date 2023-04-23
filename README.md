@@ -3,10 +3,10 @@ TESTED ON UBUNTU 22.04.2 LTS
 
 ---SETUP---
 1) Install k8s
-  sudo snap install microk8s --classic
-  sudo usermod -a -G microk8s $USER
-  sudo chown -f -R $USER ~/.kube
-  su - $USER
+sudo snap install microk8s --classic
+sudo usermod -a -G microk8s $USER
+sudo chown -f -R $USER ~/.kube
+su - $USER
 
 2) Install docker
   apt update
